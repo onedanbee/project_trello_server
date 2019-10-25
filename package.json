@@ -1,0 +1,34 @@
+{
+  "name": "trello_server",
+  "version": "1.0.0",
+  "description": "\"1.명령형으로 작성하기 2.커밋할 때 이모지 붙이기\"",
+  "main": "index.js",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "cors": "^2.8.5",
+    "eslint": "^6.5.1",
+    "eslint-config-airbnb-base": "^14.0.0",
+    "eslint-plugin-import": "^2.18.2",
+    "express": "^4.17.1",
+    "jsonwebtoken": "^8.5.1",
+    "mysql": "^2.17.1",
+    "nodemon": "^1.19.4",
+    "sequelize": "^5.21.1",
+    "sequelize-cli": "^5.5.1",
+    "sudo": "^1.0.3"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/onedanbee/Trello_server.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/onedanbee/Trello_server/issues"
+  },
+  "homepage": "https://github.com/onedanbee/Trello_server#readme"
+}
