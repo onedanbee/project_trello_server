@@ -1,7 +1,7 @@
 const models = require("./models/index.js");
-const express = require("express");
-const router = require("./router.js");
-const parser = require("body-parser");
+// const express = require("express");
+// const router = require("./router.js");
+// const parser = require("body-parser");
 
 models.sequelize
   .sync()
@@ -13,6 +13,6 @@ models.sequelize
     console.log(err);
   });
 
-app.use(parser.json());
-app.use("/", router);
-module.exports.app = app;
+// app.use(parser.json());
+// app.use("/", router);
+// module.exports.app = app;
