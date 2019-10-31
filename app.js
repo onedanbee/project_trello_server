@@ -8,6 +8,7 @@ const app = express();
 const users = require("./routes/users");
 const sign = require("./routes/sign");
 const auth = require("./middlewares/auth");
+const boards = require("./routes/boards");
 
 models.sequelize
   .sync()
@@ -15,7 +16,6 @@ models.sequelize
     console.log("DB 연결 성공");
   })
   .catch(err => {
-    s;
     console.log("연결 실패");
     console.log(err);
   });
@@ -25,6 +25,7 @@ app.use(parser.urlencoded({ extended: true }));
 app.use(auth);
 app.use("/users", users);
 app.use("/sign", sign);
+app.use("/boards", boards);
 
 app.get("/", (req, res) => {
   res.send("express.js로 만든 서버입니다.");
