@@ -13,7 +13,7 @@ router.post("/signin", (req, res) => {
     },
     jwtKey.key,
     {
-      expiresIn: "20m"
+      expiresIn: "24h"
     }
   );
 
