@@ -38,7 +38,7 @@ router.post("/signUp", async (req, res) => {
               user_id: req.body.user_id,
               user_email: req.body.user_email,
               user_password: key.toString("base64"),
-              key: buf.toString("base64")
+              salt: buf.toString("base64")
             })
             .then(() => {
               users;

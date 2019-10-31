@@ -20,6 +20,11 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING(100),
       allowNull: false,
       unique: true
+    },
+    salt: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      unique: true
     }
   });
   user.associate = function(models) {

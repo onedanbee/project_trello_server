@@ -6,6 +6,9 @@ const models = require("./models/index");
 const app = express();
 
 const users = require("./routes/users");
+const sign = require("./routes/sign");
+const auth = require("./middlewares/auth");
+
 models.sequelize
   .sync()
   .then(() => {
@@ -19,7 +22,9 @@ models.sequelize
 
 app.use(parser.json());
 app.use(parser.urlencoded({ extended: true }));
+app.use(auth);
 app.use("/users", users);
+app.use("/sign", sign);
 
 app.get("/", (req, res) => {
   res.send("express.js로 만든 서버입니다.");
