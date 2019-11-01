@@ -3,7 +3,7 @@ const router = express.Router();
 const boards = require("../models").board;
 const users = require("../models").user;
 
-router.post("/create", async (req, res) => {
+router.post("/", async (req, res) => {
   console.log("req를 보여주세요", req.token);
 
   let user_key = await users
@@ -21,22 +21,26 @@ router.post("/create", async (req, res) => {
         b_title: req.body.b_title,
         U_key: user_key
       })
-      .then(() => {
+      .then(val => {
         boards;
-        res.json({ message: "board 생성이 되었습니다.👻" });
+        res.json({
+          message: "board 생성이 되었습니다.👻",
+          B_key: val.dataValues.B_key
+        });
       });
   } else {
     res.json({ message: "실패" });
   }
 });
 
-router.post("/delete", async (req, res) => {
+router.delete("/:B_key", async (req, res) => {
   let result = {};
   if (req.token) {
     boards
       .destroy({
         where: {
-          b_title: req.body.b_title
+          b_title: req.body.b_title,
+          B_key: req.params.B_key
         }
       })
       .then(() => {
@@ -49,12 +53,12 @@ router.post("/delete", async (req, res) => {
   }
 });
 
-router.post("/modify", async (req, res) => {
+router.put("/:B_key", async (req, res) => {
   if (req.token) {
     await boards
       .findOne({
         where: {
-          B_key: req.body.B_key
+          B_key: req.params.B_key
         }
       })
       .then(users => {
@@ -70,6 +74,19 @@ router.post("/modify", async (req, res) => {
   } else {
     res.sendStatus(401);
   }
+});
+
+router.get("/:U_key", async (req, res) => {
+  boards
+    .findAll({
+      where: {
+        U_key: req.params.U_key
+      }
+    })
+    .then(result => {
+      res.json(result);
+    })
+    .catch(err => res.json(err));
 });
 
 module.exports = router;
