@@ -66,4 +66,16 @@ router.put("/:c_key", async (req, res) => {
   }
 });
 
+router.get("/:B_key", async (req, res) => {
+  containers
+    .findAll({
+      where: {
+        B_key: req.params.B_key
+      }
+    })
+    .then(result => {
+      res.json(result);
+    })
+    .catch(err => res.json(err));
+});
 module.exports = router;
