@@ -1,46 +1,36 @@
 const express = require("express");
 const router = express.Router();
+const containers = require("../models").container;
 const boards = require("../models").board;
-const users = require("../models").user;
 
 router.post("/", async (req, res) => {
-  console.log("req를 보여주세요", req.token);
-
-  let user_key = await users
-    .findOne({
-      where: {
-        user_email: req.token.user_email
-      },
-      attributes: ["U_key"]
-    })
-    .then(val => val.dataValues.U_key);
-
+  console.log(req.body);
   if (req.token) {
-    boards
+    containers
       .create({
-        b_title: req.body.b_title,
-        U_key: user_key
+        c_title: req.body.c_title,
+        B_key: req.body.B_key
       })
       .then(val => {
-        boards;
+        containers;
         res.json({
-          message: "board 생성이 되었습니다.👻",
-          B_key: val.dataValues.B_key
+          message: "containers 생성이 되었습니다.👻",
+          C_key: val.dataValues.C_key
         });
       });
   } else {
-    res.json({ message: "실패" });
+    res.json({ message: "실패했습니다" });
   }
 });
 
-router.delete("/:B_key", async (req, res) => {
+router.delete("/:C_key", async (req, res) => {
   let result = {};
   if (req.token) {
-    boards
+    containers
       .destroy({
         where: {
-          b_title: req.body.b_title,
-          B_key: req.params.B_key
+          c_title: req.body.c_title,
+          C_key: req.params.C_key
         }
       })
       .then(() => {
@@ -53,17 +43,17 @@ router.delete("/:B_key", async (req, res) => {
   }
 });
 
-router.put("/:B_key", async (req, res) => {
+router.put("/:c_key", async (req, res) => {
   if (req.token) {
-    await boards
+    await containers
       .findOne({
         where: {
-          B_key: req.params.B_key
+          c_key: req.params.c_key
         }
       })
       .then(users => {
         users
-          .update({ b_title: req.body.b_title })
+          .update({ c_title: req.body.c_title })
           .then(result => {
             res.json({ result: result, message: "수정완료✔️" });
           })
@@ -76,11 +66,11 @@ router.put("/:B_key", async (req, res) => {
   }
 });
 
-router.get("/:U_key", async (req, res) => {
-  boards
+router.get("/:B_key", async (req, res) => {
+  containers
     .findAll({
       where: {
-        U_key: req.params.U_key
+        B_key: req.params.B_key
       }
     })
     .then(result => {
@@ -88,5 +78,4 @@ router.get("/:U_key", async (req, res) => {
     })
     .catch(err => res.json(err));
 });
-
 module.exports = router;

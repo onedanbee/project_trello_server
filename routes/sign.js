@@ -7,6 +7,7 @@ const jwtKey = require("../secret/jwtKey");
 const jwt = require("jsonwebtoken");
 
 router.post("/signin", (req, res) => {
+  console.log(req.params);
   let token = jwt.sign(
     {
       user_email: req.body.user_email
@@ -44,7 +45,7 @@ router.post("/signin", (req, res) => {
     });
 });
 
-router.post("/delete", async (req, res) => {
+router.delete("/:U_key", async (req, res) => {
   let result = {};
   if (req.token) {
     users
@@ -63,7 +64,7 @@ router.post("/delete", async (req, res) => {
   }
 });
 
-router.post("/modify", async (req, res) => {
+router.put("/:U_key", async (req, res) => {
   users
     .findOne({
       where: {
