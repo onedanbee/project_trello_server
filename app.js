@@ -2,8 +2,8 @@
 const express = require("express");
 const parser = require("body-parser");
 const models = require("./models/index");
-
 const app = express();
+const cors = require("cors");
 
 const users = require("./routes/users");
 const sign = require("./routes/sign");
@@ -25,6 +25,7 @@ models.sequelize
 app.use(parser.json());
 app.use(parser.urlencoded({ extended: true }));
 app.use(auth);
+app.use(cors());
 app.use("/users", users);
 app.use("/sign", sign);
 app.use("/boards", boards);
@@ -35,6 +36,7 @@ app.get("/", (req, res) => {
   res.send("express.js로 만든 서버입니다.");
 });
 
-app.listen(3000, () => {
+const port = process.env.PORT || 3000;
+app.listen(port, () => {
   console.log("**********서버연결 성공*********");
 });

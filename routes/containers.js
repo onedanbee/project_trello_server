@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const containers = require("../models").container;
-const boards = require("../models").board;
+const cards = require("../models").card;
 
 router.post("/", async (req, res) => {
   console.log(req.body);
@@ -69,6 +69,12 @@ router.put("/:c_key", async (req, res) => {
 router.get("/:B_key", async (req, res) => {
   containers
     .findAll({
+      include: [
+        {
+          model: cards,
+          attributes: ["card_text"]
+        }
+      ],
       where: {
         B_key: req.params.B_key
       }

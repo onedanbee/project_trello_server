@@ -14,7 +14,7 @@ router.post("/signin", (req, res) => {
     },
     jwtKey.key,
     {
-      expiresIn: "24h"
+      expiresIn: "1h"
     }
   );
 
@@ -35,6 +35,7 @@ router.post("/signin", (req, res) => {
           if (salt.toString("base64") === users.dataValues.user_password) {
             res.cookie("users", token);
             res.json({
+              user_id: users.user_id,
               token: token,
               isLogin: true,
               message: "로그인 성공!!!"

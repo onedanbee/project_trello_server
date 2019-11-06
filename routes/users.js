@@ -10,6 +10,7 @@ router.post("/signUp", async (req, res) => {
     .then(result => result);
 
   let response = {};
+
   if (!joinUser) {
     crypto.randomBytes(64, (err, buf) => {
       crypto.pbkdf2(
