@@ -39,8 +39,7 @@ router.delete("/:B_key", async (req, res) => {
     boards
       .destroy({
         where: {
-          b_title: req.body.b_title,
-          B_key: req.params.B_key
+          b_title: req.body.b_title
         }
       })
       .then(() => {
@@ -76,11 +75,32 @@ router.put("/:B_key", async (req, res) => {
   }
 });
 
-router.get("/:U_key", async (req, res) => {
+router.get("/:B_key", async (req, res) => {
   boards
     .findAll({
       where: {
-        U_key: req.params.U_key
+        B_key: req.params.B_key
+      }
+    })
+    .then(result => {
+      res.json(result);
+    })
+    .catch(err => res.json(err));
+});
+
+router.get("/", async (req, res) => {
+  let userKey = await users
+    .findOne({
+      where: {
+        user_email: req.token.user_email
+      },
+      attributes: ["U_key"]
+    })
+    .then(res => res.dataValues.U_key);
+  await boards
+    .findAll({
+      where: {
+        U_key: userKey
       }
     })
     .then(result => {

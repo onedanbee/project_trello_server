@@ -14,7 +14,7 @@ router.post("/", async (req, res) => {
       .then(val => {
         containers;
         res.json({
-          message: "containers 생성이 되었습니다.👻",
+          message: "card가 생성이 되었습니다.👻",
           C_key: val.dataValues.C_key
         });
       });

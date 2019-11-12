@@ -29,7 +29,6 @@ router.delete("/:C_key", async (req, res) => {
     containers
       .destroy({
         where: {
-          c_title: req.body.c_title,
           C_key: req.params.C_key
         }
       })
@@ -43,12 +42,12 @@ router.delete("/:C_key", async (req, res) => {
   }
 });
 
-router.put("/:c_key", async (req, res) => {
+router.put("/:C_key", async (req, res) => {
   if (req.token) {
     await containers
       .findOne({
         where: {
-          c_key: req.params.c_key
+          C_key: req.params.C_key
         }
       })
       .then(users => {
@@ -72,7 +71,7 @@ router.get("/:B_key", async (req, res) => {
       include: [
         {
           model: cards,
-          attributes: ["card_text"]
+          attributes: ["card_text", "card_key"]
         }
       ],
       where: {

@@ -38,6 +38,7 @@ router.post("/signin", (req, res) => {
               user_id: users.user_id,
               token: token,
               isLogin: true,
+              U_key: users.U_key,
               message: "로그인 성공!!!"
             });
           }
