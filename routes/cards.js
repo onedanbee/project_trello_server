@@ -65,6 +65,29 @@ router.put("/:card_key", async (req, res) => {
   }
 });
 
+router.put("/:card_key/move", async (req, res) => {
+  if (req.token) {
+    await cards
+      .findOne({
+        where: {
+          card_key: req.params.card_key
+        }
+      })
+      .then(card => {
+        card
+          .update({ C_key: req.body.C_key })
+          .then(result => {
+            res.json({ result: result, message: "수정완료✔️" });
+          })
+          .catch(err => {
+            console.log(err);
+          });
+      });
+  } else {
+    res.sendStatus(401);
+  }
+});
+
 router.get("/:C_key", async (req, res) => {
   cards
     .findAll({
