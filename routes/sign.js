@@ -14,7 +14,7 @@ router.post("/signin", (req, res) => {
     },
     jwtKey.key,
     {
-      expiresIn: "1h"
+      expiresIn: "10h"
     }
   );
 

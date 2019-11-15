@@ -88,6 +88,21 @@ router.get("/:B_key", async (req, res) => {
     .catch(err => res.json(err));
 });
 
+router.get("/:B_key/now", async (req, res) => {
+  console.log(req.params);
+  boards
+    .findOne({
+      where: {
+        B_key: req.params.B_key
+      },
+      attributes: ["b_title"]
+    })
+    .then(result => {
+      res.json(result);
+    })
+    .catch(err => res.json(err));
+});
+
 router.get("/", async (req, res) => {
   let userKey = await users
     .findOne({

@@ -50,8 +50,8 @@ router.put("/:C_key", async (req, res) => {
           C_key: req.params.C_key
         }
       })
-      .then(users => {
-        users
+      .then(container => {
+        container
           .update({ c_title: req.body.c_title })
           .then(result => {
             res.json({ result: result, message: "수정완료✔️" });
@@ -83,4 +83,19 @@ router.get("/:B_key", async (req, res) => {
     })
     .catch(err => res.json(err));
 });
+
+router.get("/:B_key/list", async (req, res) => {
+  containers
+    .findAll({
+      where: {
+        B_key: req.params.B_key
+      },
+      attributes: ["C_key", "c_title"]
+    })
+    .then(result => {
+      res.json(result);
+    })
+    .catch(err => res.json(err));
+});
+
 module.exports = router;
