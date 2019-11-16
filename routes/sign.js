@@ -41,6 +41,8 @@ router.post("/signin", (req, res) => {
               U_key: users.U_key,
               message: "로그인 성공!!!"
             });
+          } else {
+            res.json({ isLogin: false });
           }
         }
       );
