@@ -1,5 +1,3 @@
-let key = {
-  key: "trello940225"
-};
+let key = {};
 
 module.exports = key;
