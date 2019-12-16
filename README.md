@@ -21,9 +21,10 @@ npm install
 
 ## 시연영상
 
-<iframe width="630" height="360" src="https://www.youtube.com/embed/S6hurY1deJM" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<!-- <iframe width="630" height="360" src="https://www.youtube.com/embed/S6hurY1deJM" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> -->
+
+[![Video Label](https://img.youtube.com/vi/S6hurY1deJM/0.jpg)](https://youtu.be/S6hurY1deJM?t=0s)
 
 ## Release History
 
-- 0.1.0
-- 첫 배포
+- 0.1.0 (첫 배포)
